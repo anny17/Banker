@@ -1,2 +1,3 @@
 # Banker
-collage project
+college project for operating System
+
