@@ -172,6 +172,12 @@ void function(int pro)
 	{
 	    printf("Enter the number of instaces required of resource %d\n",j);
 	    scanf("%d",&Allocation1[j]);
+	    if(Allocation1[j]>Available[j])
+		{
+		  printf("Request can not be granted\n");
+		  pthread_mutex_unlock(&lock);
+		  pthread_exit(NULL);
+		}
 	}
     if (checksafe(Allocation1,pro) == 1)
 	{
@@ -188,47 +194,6 @@ void function(int pro)
 
 
 
-
-
-
-//////Print function
-void print()
-{
-printf("Available resources:\n");
-
-	for(int j=0;j<Numofresources;j++)
-	     {
-	    	printf("Resources %d\t%d\n",j,Available[j]);
-	     }
-printf("Max matrix:\n");
-
-	for(int i=0;i<Numofprocess;i++)
-	{
-	     for(int j=0;j<Numofresources;j++)
-	     {
-	    	printf("%d\t",Max[i][j]);
-	     }
-	     printf("\n");
-	}
-printf("Alocation matrix:\n");
-	for(int i=0;i<Numofprocess;i++)
-	{
-	     for(int j=0;j<Numofresources;j++)
-	     {
-	    	printf("%d\t",Allocation[i][j]);
-	     }
-	     printf("\n");
-	}
-printf("Need matrix:\n");
-	for(int i=0;i<Numofprocess;i++)
-	{
-	     for(int j=0;j<Numofresources;j++)
-	     {
-	    	printf("%d\t",Max[i][j] - Allocation[i][j]);
-	     }
-	     printf("\n");
-	}
-}
 
 
 
